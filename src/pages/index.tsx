@@ -1,4 +1,4 @@
-import PageControls from "@/components/PageControls";
+import PageScaffold from "@/components/layout/PageScaffold";
 import { IBM_Plex_Sans_Condensed, Nanum_Myeongjo } from "next/font/google";
 
 const serifFont = Nanum_Myeongjo({
@@ -14,28 +14,9 @@ const sansFont = IBM_Plex_Sans_Condensed({
 });
 
 export default function Home() {
-  const controlItems = [
-    {
-      label: "Intro",
-      length: 5,
-    },
-    {
-      label: "Genres",
-      length: 8,
-    },
-    {
-      label: "Taxonomy",
-      length: 24,
-    },
-  ];
-
   return (
     <main className={`bg-background w-screen h-screen ${sansFont.className} ${serifFont.className}`}>
-      <PageControls
-        items={controlItems}
-        activeIndex={5}
-        minimumVisibleIndex={4}
-      />
+      <PageScaffold/>
     </main>
   );
 }
