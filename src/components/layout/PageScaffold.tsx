@@ -1,26 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import PageControls from "./PageControls";
 import TapPageArea from "./TapPageArea";
+import { contentViews, controlGroupItems } from "@/data/ui_data";
+import { motion } from "framer-motion";
+import { useDirection } from "../contexts/useDirection";
 
 export default function PageScaffold() {
-  // Datum
-  const controlItems = [
-    {
-      label: "Intro",
-      length: 5,
-    },
-    {
-      label: "Genres",
-      length: 8,
-    },
-    {
-      label: "Taxonomy",
-      length: 24,
-    },
-  ];
-
   // States
   const [activeIndex, setActiveIndex] = useState(0);
+  const { direction, setDirection } = useDirection();
 
   // Callbacks
   const handleKeyDown = useCallback((event: any) => {
@@ -34,11 +22,13 @@ export default function PageScaffold() {
 
   // Functions
   const backPage = () => {
+    setDirection(-1);
     setActiveIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
   };
 
   const nextPage = () => {
-    const totalLength = controlItems.reduce(
+    setDirection(1);
+    const totalLength = controlGroupItems.reduce(
       (acc, item) => acc + item.length,
       0
     );
@@ -46,6 +36,12 @@ export default function PageScaffold() {
     setActiveIndex((prevIndex) =>
       prevIndex < totalLength - 1 ? prevIndex + 1 : prevIndex
     );
+  };
+
+  const getCurrentView = () => {
+    const view = contentViews?.at(activeIndex);
+
+    return view !== undefined ? view!() : <h1>Belum redi</h1>;
   };
 
   useEffect(() => {
@@ -58,13 +54,29 @@ export default function PageScaffold() {
 
   return (
     <div>
+      {/* Control & page state */}
       <PageControls
-        items={controlItems}
+        items={controlGroupItems}
         activeIndex={activeIndex}
         minimumVisibleIndex={3}
         className="absolute top-2 left-4 right-4"
       />
-      <TapPageArea onClickPrev={backPage} onClickNext={nextPage} />
+
+      {/* Tab Content */}
+      <motion.div
+        key={activeIndex}
+        custom={direction}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        whileHover="center"
+        className="pt-12"
+      >
+        {getCurrentView()}
+      </motion.div>
+
+      {/* Click/Tap are */}
+      <TapPageArea onClickPrev={backPage} onClickNext={nextPage} className="z-20 absolute top-16"/>
     </div>
   );
 }

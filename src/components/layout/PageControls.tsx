@@ -45,7 +45,7 @@ export default function PageControls({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className={cn("flex disi flex-row gap-[3px]", className)}
+          className={cn("flex disi flex-row gap-[6px]", className)}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -66,7 +66,7 @@ export default function PageControls({
             >
               <motion.p
                 className={cn(
-                  "uppercase font-bold text-xs",
+                  "font-sans uppercase font-bold text-xs",
                   isGroupActive(groupIndex) ? "text-gray-600" : "text-gray-400"
                 )}
               >
