@@ -2,19 +2,41 @@ import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import ChartLineRankedStream from "@/components/shared/charts/ChartLineRankedStream";
 
-export default function Genre4() {
+export default function Genre5() {
   const data = [
     {
       genre: "Pop",
       color: "#5b4ae4",
       items: [
-        { year: 2018, rank: 2, genre: "Pop" },
-        { year: 2019, rank: 5, genre: "Pop" },
-        { year: 2020, rank: 8, genre: "Pop" },
-        { year: 2021, rank: 23, genre: "Pop" },
-        { year: 2022, rank: 2, genre: "Pop" },
+        { year: 2018, rank: 2},
+        { year: 2019, rank: 5},
+        { year: 2020, rank: 8},
+        { year: 2021, rank: 23},
+        { year: 2022, rank: 2},
       ],
-    }
+    },
+    {
+      genre: "r&b",
+      color: "#5b4ae4",
+      items: [
+        { year: 2018, rank: 4},
+        { year: 2019, rank: 5},
+        { year: 2020, rank: 4},
+        { year: 2021, rank: 3},
+        { year: 2022, rank: 2},
+      ],
+    },
+    {
+      genre: "edm",
+      color: "#5b4ae4",
+      items: [
+        { year: 2018, rank: 2},
+        { year: 2019, rank: 4},
+        { year: 2020, rank: 7},
+        { year: 2021, rank: 2},
+        { year: 2022, rank: 7},
+      ],
+    },
   ];
 
   const xLabels = {
@@ -35,13 +57,10 @@ export default function Genre4() {
       {/* Header */}
       <ContentHeader>
         <p className="my-4">
-          Every year, Spotify is available in more countries, such as India in
-          2019 and South Korea in 2021. Fittingly, you can see genres with
-          artists{" "}
-          <span className="font-sans text-fuchsia-700 font-medium">
-            primarily from countries in Latin America, Asia, and Africa
-          </span>{" "}
-          begin to dominate in popularity.
+          <span className="font-sans text-fuchsia-700 font-medium">K-Pop</span>{" "}
+          now has more streams than{" "}
+          <span className="font-sans font-semibold text-gray-800">r&b</span>{" and "}
+          <span className="font-sans font-semibold text-gray-800">edm</span>
         </p>
       </ContentHeader>
 

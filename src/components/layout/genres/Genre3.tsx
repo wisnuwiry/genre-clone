@@ -1,10 +1,8 @@
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
-import ChartLineRankedStream from "@/components/shared/charts/ChartLineRankedStream";
 import ChartRankedCountries from "@/components/shared/charts/ChartRankedCountries";
 
 export default function Genre3() {
-  
 
   return (
     <ContentWrapper className="flex flex-col">

@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
+interface DataLine {
+  color: string
+  genre: string
+  items: DataPoint[]
+}
+
 interface DataPoint {
   year: number;
   rank: number;
-  genre: string;
 }
 
 interface Props {
-  data: DataPoint[][];
+  data: DataLine[];
   minRank: number;
   maxRank: number;
   xLabels?: { [key: number]: string }; // Custom labels for the x-axis (year)
@@ -36,25 +41,24 @@ export default function ChartLineRankedStream({
 
     const x = d3
       .scaleLinear()
-      .domain([
-        d3.min(data.flat(), (d) => d.year) || 0,
-        d3.max(data.flat(), (d) => d.year) || 0,
+      .domain(
+        [
+        d3.min(data.map((e)=>e.items).flat(), (d) => d.year) || 0,
+        d3.max(data.map((e)=>e.items).flat(), (d) => d.year) || 0,
       ])
       .range([0, width]);
 
     const y = d3.scaleLinear().domain([maxRank, minRank]).range([height, 0]);
 
-    const line = d3
-      .line<DataPoint>()
-      .x((d) => x(d.year))
-      .y((d) => y(d.rank))
+    const line = d3.line<DataPoint>()
+      .x(d => x(d.year))
+      .y(d => y(d.rank))
       .curve(d3.curveLinear);
 
     svg.selectAll("*").remove();
 
     // Draw grid lines
     const uniqueRanks = Object.keys(yLabels).map(Number);
-    console.log(uniqueRanks);
     uniqueRanks.forEach((rank) => {
       if (rank >= minRank && rank <= maxRank) {
         svg
@@ -70,14 +74,14 @@ export default function ChartLineRankedStream({
     });
 
     // Draw lines
-    data.forEach((lineData, index) => {
-      const path = svg
+    data.forEach((lineData) => {
+        const path = svg
         .append("path")
-        .data([lineData])
+        .data([lineData.items])
         .attr("class", "line")
         .attr("d", line)
         .style("fill", "none")
-        .style("stroke", d3.schemeCategory10[index % 10])
+        .style("stroke", lineData.color)
         .style("stroke-width", "3px")
         .style("opacity", 0.9);
 
@@ -92,22 +96,22 @@ export default function ChartLineRankedStream({
       }
 
       // Start and End Point Labels
-      const start = lineData[0];
-      const end = lineData[lineData.length - 1];
+      const start = lineData.items[0];
+      const end = lineData.items[lineData.items.length - 1];
 
       svg
         .append("circle")
         .attr("cx", x(start.year))
         .attr("cy", y(start.rank))
         .attr("r", 6)
-        .style("fill", d3.schemeCategory10[index % 10]);
+        .style("fill", lineData.color);
 
       svg
         .append("circle")
         .attr("cx", x(end.year))
         .attr("cy", y(end.rank))
         .attr("r", 6)
-        .style("fill", d3.schemeCategory10[index % 10]);
+        .style("fill", lineData.color);
 
       svg
         .append("text")
@@ -115,17 +119,19 @@ export default function ChartLineRankedStream({
         .attr("y", y(start.rank) - 10)
         .text(`#${start.rank}`)
         .style("font-size", "14px")
-        .style("fill", d3.schemeCategory10[index % 10])
+        .style("fill", lineData.color)
         .attr("class", "font-sans font-semibold");
 
       svg
         .append("text")
         .attr("x", x(end.year))
         .attr("y", y(end.rank) - 10)
-        .text(`#${end.rank}\n${end.genre}`)
-        .style("font-size", "14px")
-        .style("fill", d3.schemeCategory10[index % 10])
-        .attr("class", "font-sans font-semibold");
+        .text(`#${end.rank}\n${lineData.genre}`)
+        .style("font-size", "16px")
+        .style("fill", lineData.color)
+        .attr("class", "font-sans font-bold");
+      
+     
     });
 
     // Add x-axis with custom labels
