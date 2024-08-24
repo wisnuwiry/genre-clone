@@ -11,7 +11,7 @@ export default function ContentHeader({ children, className }: Props) {
   return (
     <motion.article
       className={cn(
-        "font-serif text-lg bg-gradient-to-b from-background/50 to-background z-10",
+        "font-serif text-lg font-semibold bg-gradient-to-b from-background/50 to-background z-10",
         className
       )}
       initial={{ opacity: 0.5 }}

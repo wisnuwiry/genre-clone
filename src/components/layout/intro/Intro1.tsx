@@ -28,17 +28,17 @@ export default function Intro1() {
     <ContentWrapper className="flex flex-col">
       {/* Header */}
       <ContentHeader>
-        <h3>
+        <h3 className="text-md">
           <a
             href="https://pudding.cool/"
             target="_blank"
-            className="underline underline-offset-2	font-medium"
+            className="underline underline-offset-2 font-semibold"
           >
             The Pudding
           </a>
           <span className="text-gray-600"> presents</span>
         </h3>
-        <h1 className="font-serif text-5xl my-4">
+        <h1 className="font-serif text-5xl my-4 font-semibold">
           You should look at this chart about{" "}
           <span className="text-violet-800">music genres</span>.
         </h1>

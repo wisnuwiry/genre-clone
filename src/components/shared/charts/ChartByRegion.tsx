@@ -154,7 +154,7 @@ export default function ChartByRegion() {
             fill="#BE3AA7"
             fillOpacity="0.8"
             stroke="#BE3AA7"
-            stroke-opacity="0.8"
+            strokeOpacity="0.8"
             className="font-sans"
             fontSize="14"
             fontWeight="bold"
@@ -293,7 +293,7 @@ export default function ChartByRegion() {
             x2="315"
             y2="211.5"
             stroke="black"
-            stroke-opacity="0.5"
+            strokeOpacity="0.5"
           ></line>
           <line
             id="Line 63"
@@ -302,7 +302,7 @@ export default function ChartByRegion() {
             x2="315"
             y2="23.5"
             stroke="black"
-            stroke-opacity="0.5"
+            strokeOpacity="0.5"
           ></line>
         </g>
       </g>

@@ -1,9 +1,7 @@
-import { useDirection } from "@/components/contexts/useDirection";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import Table from "@/components/shared/Table";
 import { rankedGenresIn2016, rankedGenresIn2023 } from "@/data/genres";
-import { motion } from "framer-motion";
 
 export default function Intro3() {
   const rows = rankedGenresIn2016.map((value, index) => ({

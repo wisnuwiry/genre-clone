@@ -46,7 +46,7 @@ export default function KeyboardInstruction({ className }: Props) {
         </svg>
       </div>
 
-      <div className="flex flex-row mt-1 font-bold justify-end">
+      <div className="flex flex-row mt-1 font-bold justify-end items-center">
         <p>Or use the keyboard</p>
         <div className="ml-1 p-1 border rounded shadow-sm">
           <svg
