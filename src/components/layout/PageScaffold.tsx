@@ -76,7 +76,7 @@ export default function PageScaffold() {
       </motion.div>
 
       {/* Click/Tap are */}
-      <TapPageArea onClickPrev={backPage} onClickNext={nextPage} className="z-20 absolute top-16"/>
+      <TapPageArea onClickPrev={backPage} onClickNext={nextPage} className="absolute top-16"/>
     </div>
   );
 }

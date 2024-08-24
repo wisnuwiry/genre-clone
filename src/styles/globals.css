@@ -12,3 +12,8 @@ p {
   line-height: 120%;
   letter-spacing: -0.02em;
 }
+
+a,
+button {
+  pointer-events: auto;
+}

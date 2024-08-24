@@ -1,3 +1,4 @@
+import { AudioPlayerProvider } from "@/components/contexts/useAudioPlayer";
 import { DirectionProvider } from "@/components/contexts/useDirection";
 import PageScaffold from "@/components/layout/PageScaffold";
 import { IBM_Plex_Sans_Condensed, Nanum_Myeongjo } from "next/font/google";
@@ -22,7 +23,9 @@ export default function Home() {
       className={`bg-background w-screen h-screen overflow-hidden ${sansFont.variable} ${serifFont.variable}`}
     >
       <DirectionProvider>
-        <PageScaffold />
+        <AudioPlayerProvider>
+          <PageScaffold />
+        </AudioPlayerProvider>
       </DirectionProvider>
     </main>
   );

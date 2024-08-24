@@ -1,3 +1,4 @@
+import AudioButton from "@/components/shared/AudioButton";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import ChartLineRankedStream from "@/components/shared/charts/ChartLineRankedStream";
@@ -8,44 +9,44 @@ export default function Genre6() {
       genre: "Pop",
       color: "#5b4ae4",
       items: [
-        { year: 2018, rank: 2},
-        { year: 2019, rank: 5},
-        { year: 2020, rank: 8},
-        { year: 2021, rank: 23},
-        { year: 2022, rank: 2},
+        { year: 2018, rank: 2 },
+        { year: 2019, rank: 5 },
+        { year: 2020, rank: 8 },
+        { year: 2021, rank: 23 },
+        { year: 2022, rank: 2 },
       ],
     },
     {
       genre: "r&b",
       color: "#5b4ae4",
       items: [
-        { year: 2018, rank: 4},
-        { year: 2019, rank: 5},
-        { year: 2020, rank: 4},
-        { year: 2021, rank: 3},
-        { year: 2022, rank: 5},
+        { year: 2018, rank: 4 },
+        { year: 2019, rank: 5 },
+        { year: 2020, rank: 4 },
+        { year: 2021, rank: 3 },
+        { year: 2022, rank: 5 },
       ],
     },
     {
       genre: "edm",
       color: "#5b4ae4",
       items: [
-        { year: 2018, rank: 6},
-        { year: 2019, rank: 4},
-        { year: 2020, rank: 7},
-        { year: 2021, rank: 2},
-        { year: 2022, rank: 4},
+        { year: 2018, rank: 6 },
+        { year: 2019, rank: 4 },
+        { year: 2020, rank: 7 },
+        { year: 2021, rank: 2 },
+        { year: 2022, rank: 4 },
       ],
     },
     {
       genre: "reggeation",
       color: "#5b4ae4",
       items: [
-        { year: 2018, rank: 1},
-        { year: 2019, rank: 4},
-        { year: 2020, rank: 2},
-        { year: 2021, rank: 2},
-        { year: 2022, rank: 3},
+        { year: 2018, rank: 1 },
+        { year: 2019, rank: 4 },
+        { year: 2020, rank: 2 },
+        { year: 2021, rank: 2 },
+        { year: 2022, rank: 3 },
       ],
     },
   ];
@@ -67,14 +68,19 @@ export default function Genre6() {
     <ContentWrapper className="flex flex-col">
       {/* Header */}
       <ContentHeader>
-        <p className="my-4">
+        <div className="my-4">
           You’ve probably heard of{" "}
-          <span className="font-sans text-fuchsia-700 font-medium">Bad Bunny (TODO: music)</span>{" "}
-          , the world’s most streamed musician, three years running. {" "}
-          <strong>Reggeation</strong>{"  has similarly exhibited a  "}
+          <AudioButton
+            src="/audio/bad-bunny.mp3"
+            audioId="bad-bunny"
+            title="Bad Bunny"
+          />
+          , the world’s most streamed musician, three years running.{" "}
+          <strong>Reggeation</strong>
+          {"  has similarly exhibited a  "}
           <strong>K-POP</strong>
           -like ascent.
-        </p>
+        </div>
       </ContentHeader>
 
       {/* Content */}
