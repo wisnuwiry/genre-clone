@@ -1,33 +1,34 @@
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import ChartLineRankedStream from "@/components/shared/charts/ChartLineRankedStream";
+import { rankedByStreamData } from "@/data/chart/ranked_by_stream";
 
 export default function Genre4() {
   const data = [
     {
-      genre: "Pop",
+      genre: "K-Pop",
       color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 2, genre: "Pop" },
-        { year: 2019, rank: 5, genre: "Pop" },
-        { year: 2020, rank: 8, genre: "Pop" },
-        { year: 2021, rank: 23, genre: "Pop" },
-        { year: 2022, rank: 2, genre: "Pop" },
-      ],
-    }
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e["k-pop"],
+      })),
+    },
   ];
 
   const xLabels = {
-    2018: "2018",
+    2017: "2017",
     2020: "2020",
-    2022: "2022",
+    2023: "2023",
   };
 
   const yLabels = {
-    1: "#Top 1",
-    3: "#Top 3",
-    6: "#Top 6",
-    10: "#Top 10",
+    1: "#1",
+    50: "#50",
+    100: "#100",
+    150: "#150",
+    200: "#200",
+    250: "#250",
+    300: "#300",
   };
 
   return (
@@ -51,14 +52,16 @@ export default function Genre4() {
           Genres, ranked by streams on Spotify and highlighting artists country
           of origin
         </p>
-        <div className="w-full">
-          <ChartLineRankedStream
-            data={data}
-            minRank={0}
-            maxRank={6}
-            xLabels={xLabels}
-            yLabels={yLabels}
-          />
+        <div className="w-full px-[10%]">
+          <div className="m-auto">
+            <ChartLineRankedStream
+              data={data}
+              minRank={0}
+              maxRank={300}
+              xLabels={xLabels}
+              yLabels={yLabels}
+            />
+          </div>
         </div>
       </div>
     </ContentWrapper>

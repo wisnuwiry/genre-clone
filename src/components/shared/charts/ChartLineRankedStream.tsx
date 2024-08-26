@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
 interface DataLine {
-  color: string
-  genre: string
-  items: DataPoint[]
+  color: string;
+  genre: string;
+  items: DataPoint[];
+  animate?: boolean;
 }
 
 interface DataPoint {
-  year: number;
+  date: Date;
   rank: number;
 }
 
@@ -16,7 +17,7 @@ interface Props {
   data: DataLine[];
   minRank: number;
   maxRank: number;
-  xLabels?: { [key: number]: string }; // Custom labels for the x-axis (year)
+  xLabels?: { [key: number]: string }; // Custom labels for the x-axis (date)
   yLabels?: { [key: number]: string }; // Custom labels for the y-axis (rank)
   animate?: boolean;
 }
@@ -34,31 +35,39 @@ export default function ChartLineRankedStream({
     if (!svgRef.current) return;
 
     const svg = d3.select(svgRef.current);
-    const width = 800;
-    const height = 400;
+    const width = 600;
+    const height = 650;
 
-    svg.attr("viewBox", `0 0 ${width} ${height}`);
+    svg
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet");
 
     const x = d3
-      .scaleLinear()
+      .scaleTime()
       .domain(
-        [
-        d3.min(data.map((e)=>e.items).flat(), (d) => d.year) || 0,
-        d3.max(data.map((e)=>e.items).flat(), (d) => d.year) || 0,
-      ])
+        d3.extent(
+          data.flatMap((d) => d.items),
+          (d) => d.date
+        ) as [Date, Date]
+      )
       .range([0, width]);
 
     const y = d3.scaleLinear().domain([maxRank, minRank]).range([height, 0]);
 
-    const line = d3.line<DataPoint>()
-      .x(d => x(d.year))
-      .y(d => y(d.rank))
+    const line = d3
+      .line<DataPoint>()
+      .x((d) => x(d.date))
+      .y((d) => y(d.rank))
       .curve(d3.curveLinear);
 
     svg.selectAll("*").remove();
 
     // Draw grid lines
     const uniqueRanks = Object.keys(yLabels).map(Number);
+    const uniqueYears = Array.from(
+      new Set(data.flatMap(d => d.items.map(point => point.date.getFullYear())))
+    );
+
     uniqueRanks.forEach((rank) => {
       if (rank >= minRank && rank <= maxRank) {
         svg
@@ -75,7 +84,7 @@ export default function ChartLineRankedStream({
 
     // Draw lines
     data.forEach((lineData) => {
-        const path = svg
+      const path = svg
         .append("path")
         .data([lineData.items])
         .attr("class", "line")
@@ -85,7 +94,7 @@ export default function ChartLineRankedStream({
         .style("stroke-width", "3px")
         .style("opacity", 0.9);
 
-      if (animate) {
+      if (animate && lineData.animate !== false) {
         path
           .transition()
           .duration(2000)
@@ -101,21 +110,21 @@ export default function ChartLineRankedStream({
 
       svg
         .append("circle")
-        .attr("cx", x(start.year))
+        .attr("cx", x(start.date))
         .attr("cy", y(start.rank))
         .attr("r", 6)
         .style("fill", lineData.color);
 
       svg
         .append("circle")
-        .attr("cx", x(end.year))
+        .attr("cx", x(end.date))
         .attr("cy", y(end.rank))
         .attr("r", 6)
         .style("fill", lineData.color);
 
       svg
         .append("text")
-        .attr("x", x(start.year))
+        .attr("x", x(start.date))
         .attr("y", y(start.rank) - 10)
         .text(`#${start.rank}`)
         .style("font-size", "14px")
@@ -124,20 +133,22 @@ export default function ChartLineRankedStream({
 
       svg
         .append("text")
-        .attr("x", x(end.year))
+        .attr("x", x(end.date))
         .attr("y", y(end.rank) - 10)
-        .text(`#${end.rank}\n${lineData.genre}`)
+        .text(`#${end.rank} ${lineData.genre}`)
         .style("font-size", "16px")
         .style("fill", lineData.color)
         .attr("class", "font-sans font-bold");
-      
-     
     });
 
     // Add x-axis with custom labels
     const xAxis = d3
       .axisBottom(x)
-      .tickFormat((d) => xLabels[d as number] ?? "");
+      .tickValues(uniqueYears.map(year => new Date(year, 0, 1)))
+      .tickFormat(d => {
+        const year = (d as Date).getFullYear();
+        return xLabels[year] || '';
+      });
 
     svg
       .append("g")
@@ -152,7 +163,9 @@ export default function ChartLineRankedStream({
       .attr("class", "font-sans font-semibold");
 
     // Add y-axis with custom labels
-    const yAxis = d3.axisLeft(y).tickFormat((d) => yLabels[d as number] ?? "");
+    const yAxis = d3.axisLeft(y)
+    .tickValues(Object.keys(yLabels).map(Number))
+    .tickFormat((d) => yLabels[d as number] ?? "");
 
     svg.append("g").call(yAxis).attr("class", "y-axis");
 

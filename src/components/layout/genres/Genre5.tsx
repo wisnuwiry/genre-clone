@@ -1,55 +1,67 @@
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import ChartLineRankedStream from "@/components/shared/charts/ChartLineRankedStream";
+import { rankedByStreamData } from "@/data/chart/ranked_by_stream";
+import { motion } from "framer-motion";
 
 export default function Genre5() {
   const data = [
     {
-      genre: "Pop",
+      genre: "K-Pop",
       color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 2},
-        { year: 2019, rank: 5},
-        { year: 2020, rank: 8},
-        { year: 2021, rank: 23},
-        { year: 2022, rank: 2},
-      ],
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e["k-pop"],
+      })),
     },
     {
       genre: "r&b",
-      color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 4},
-        { year: 2019, rank: 5},
-        { year: 2020, rank: 4},
-        { year: 2021, rank: 3},
-        { year: 2022, rank: 2},
-      ],
+      color: "#878787",
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e["r&b"],
+      })),
     },
     {
       genre: "edm",
-      color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 2},
-        { year: 2019, rank: 4},
-        { year: 2020, rank: 7},
-        { year: 2021, rank: 2},
-        { year: 2022, rank: 7},
-      ],
+      color: "#878787",
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e.edm,
+      })),
     },
   ];
 
   const xLabels = {
-    2018: "2018",
+    2017: "2017",
     2020: "2020",
-    2022: "2022",
+    2023: "2023",
   };
 
   const yLabels = {
-    1: "#Top 1",
-    3: "#Top 3",
-    6: "#Top 6",
-    10: "#Top 10",
+    1: "#1",
+    25: "#25",
+    50: "#50",
+    75: "#75",
+  };
+
+  const emojiOpacityVariants = {
+    enter: {
+      opacity: 0,
+    },
+    center: {
+      opacity: 1,
+    },
+  };
+  
+  const emojiPositionVariants = {
+    enter: {
+      y: 0,
+    },
+    center: {
+      y: "100vh",
+      opacity: 0,
+    },
   };
 
   return (
@@ -59,7 +71,8 @@ export default function Genre5() {
         <p className="my-4">
           <span className="font-sans text-fuchsia-700 font-medium">K-Pop</span>{" "}
           now has more streams than{" "}
-          <span className="font-sans font-semibold text-gray-800">r&b</span>{" and "}
+          <span className="font-sans font-semibold text-gray-800">r&b</span>
+          {" and "}
           <span className="font-sans font-semibold text-gray-800">edm</span>
         </p>
       </ContentHeader>
@@ -70,14 +83,52 @@ export default function Genre5() {
           Genres, ranked by streams on Spotify and highlighting artists country
           of origin
         </p>
-        <div className="w-full">
-          <ChartLineRankedStream
-            data={data}
-            minRank={0}
-            maxRank={6}
-            xLabels={xLabels}
-            yLabels={yLabels}
-          />
+        <div className="w-full px-[10%]">
+          <div className="m-auto relative">
+            <ChartLineRankedStream
+              data={data}
+              minRank={0}
+              maxRank={75}
+              xLabels={xLabels}
+              yLabels={yLabels}
+            />
+            <motion.div
+              className="absolute top-0 right-8 text-8xl rotate-12"
+              variants={emojiOpacityVariants}
+              transition={{ duration: 1, ease: "easeInOut", delay: 2.1 }}
+            >
+              <motion.p
+                variants={emojiPositionVariants}
+                transition={{ duration: 2, ease: "easeInOut", delay: 3 }}
+              >
+                🤯
+              </motion.p>
+            </motion.div>
+            <motion.div
+              className="absolute top-28 left-12 text-8xl rotate-12"
+              variants={emojiOpacityVariants}
+              transition={{ duration: 1, ease: "easeInOut", delay: 2 }}
+            >
+              <motion.p
+                variants={emojiPositionVariants}
+                transition={{ duration: 2, ease: "easeInOut", delay: 3 }}
+              >
+                🤯
+              </motion.p>
+            </motion.div>
+            <motion.div
+              className="absolute top-[50%] right-[30%] text-8xl -rotate-12"
+              variants={emojiOpacityVariants}
+              transition={{ duration: 1, ease: "easeInOut", delay: 2.2 }}
+            >
+              <motion.p
+                variants={emojiPositionVariants}
+                transition={{ duration: 2, ease: "easeInOut", delay: 3 }}
+              >
+                🤯
+              </motion.p>
+            </motion.div>
+          </div>
         </div>
       </div>
     </ContentWrapper>

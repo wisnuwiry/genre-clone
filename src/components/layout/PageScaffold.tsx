@@ -4,11 +4,13 @@ import TapPageArea from "./TapPageArea";
 import { contentViews, controlGroupItems } from "@/data/ui_data";
 import { motion } from "framer-motion";
 import { useDirection } from "../contexts/useDirection";
+import { useAudioPlayer } from "../contexts/useAudioPlayer";
 
 export default function PageScaffold() {
   // States
   const [activeIndex, setActiveIndex] = useState(0);
   const { direction, setDirection } = useDirection();
+  const { stop } = useAudioPlayer();
 
   // Callbacks
   const handleKeyDown = useCallback((event: any) => {
@@ -24,6 +26,7 @@ export default function PageScaffold() {
   const backPage = () => {
     setDirection(-1);
     setActiveIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
+    stop();
   };
 
   const nextPage = () => {
@@ -36,6 +39,7 @@ export default function PageScaffold() {
     setActiveIndex((prevIndex) =>
       prevIndex < totalLength - 1 ? prevIndex + 1 : prevIndex
     );
+    stop();
   };
 
   const getCurrentView = () => {
@@ -76,7 +80,11 @@ export default function PageScaffold() {
       </motion.div>
 
       {/* Click/Tap are */}
-      <TapPageArea onClickPrev={backPage} onClickNext={nextPage} className="absolute top-16"/>
+      <TapPageArea
+        onClickPrev={backPage}
+        onClickNext={nextPage}
+        className="absolute top-16"
+      />
     </div>
   );
 }

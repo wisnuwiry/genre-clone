@@ -8,19 +8,17 @@ export default function Genre8() {
   const { direction } = useDirection();
 
   const mountainVariants = {
-    enter: {
-      top: 1400,
-      scale: 4,
-    },
+    enter: (direction: number) => ({
+      top: direction > 0 ? 300 : "200%",
+      height: direction > 0 ? "calc(100vh-300px)" : "400vh",
+    }),
     center: {
       top: 300,
-      bottom: 0,
-      scale: 1,
+      height: "calc(100vh-300px)",
     },
     exit: {
       top: 300,
-      bottom: 0,
-      scale: 1,
+      height: "calc(100vh-300px)",
     },
   };
 
@@ -44,7 +42,7 @@ export default function Genre8() {
           variants={mountainVariants}
           custom={direction}
           transition={{ ease: "easeInOut", duration: 1 }}
-          className="absolute left-0 right-0 w-screen min-w-[1200px]"
+          className="absolute left-0 right-0 min-w-[1200px]"
         >
           <MountainGenres />
         </motion.div>

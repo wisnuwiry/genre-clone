@@ -11,13 +11,15 @@ export default function Intro1() {
 
   const tableVariants = {
     enter: (direction: number) => ({
-      y: direction < 0 ? -120 : 0,
+      y: direction < 0 ? -120 : 80,
+      opacity: direction < 0 ? 1 : 0,
     }),
     center: (direction: number) => ({
       y: 0,
       transition: {
         duration: direction < 0 ? 1.5 : 0.8,
       },
+      opacity: 1,
     }),
     exit: {
       y: 0,
@@ -65,9 +67,14 @@ export default function Intro1() {
           <div className="absolute bottom-0 w-full h-3/6 bg-gradient-to-b from-background/25 to-background"></div>
         </motion.div>
 
-        <div className="flex-1">
+        <motion.div
+          className="flex-1"
+          variants={tableVariants}
+          custom={direction}
+          transition={{ ease: "easeInOut", duration: 0.8 }}
+        >
           <KeyboardInstruction className="absolute bottom-8 ml-16" />
-        </div>
+        </motion.div>
       </div>
     </ContentWrapper>
   );

@@ -2,66 +2,59 @@ import AudioButton from "@/components/shared/AudioButton";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import ChartLineRankedStream from "@/components/shared/charts/ChartLineRankedStream";
+import { rankedByStreamData } from "@/data/chart/ranked_by_stream";
 
 export default function Genre6() {
   const data = [
     {
-      genre: "Pop",
-      color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 2 },
-        { year: 2019, rank: 5 },
-        { year: 2020, rank: 8 },
-        { year: 2021, rank: 23 },
-        { year: 2022, rank: 2 },
-      ],
+      genre: "K-Pop",
+      color: "#c5c5dc",
+      animate: false,
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e["k-pop"],
+      })),
     },
     {
       genre: "r&b",
-      color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 4 },
-        { year: 2019, rank: 5 },
-        { year: 2020, rank: 4 },
-        { year: 2021, rank: 3 },
-        { year: 2022, rank: 5 },
-      ],
+      color: "#878787",
+      animate: false,
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e["r&b"],
+      })),
     },
     {
       genre: "edm",
-      color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 6 },
-        { year: 2019, rank: 4 },
-        { year: 2020, rank: 7 },
-        { year: 2021, rank: 2 },
-        { year: 2022, rank: 4 },
-      ],
+      color: "#878787",
+      animate: false,
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e.edm,
+      })),
     },
     {
       genre: "reggeation",
       color: "#5b4ae4",
-      items: [
-        { year: 2018, rank: 1 },
-        { year: 2019, rank: 4 },
-        { year: 2020, rank: 2 },
-        { year: 2021, rank: 2 },
-        { year: 2022, rank: 3 },
-      ],
+      animate: true,
+      items: rankedByStreamData.map((e) => ({
+        date: new Date(e.date),
+        rank: e.reggaeton,
+      })),
     },
   ];
 
   const xLabels = {
-    2018: "2018",
+    2017: "2017",
     2020: "2020",
     2022: "2022",
   };
 
   const yLabels = {
-    1: "#Top 1",
-    3: "#Top 3",
-    6: "#Top 6",
-    10: "#Top 10",
+    1: "#1",
+    25: "#25",
+    50: "#50",
+    75: "#75",
   };
 
   return (
@@ -89,14 +82,16 @@ export default function Genre6() {
           Genres, ranked by streams on Spotify and highlighting artists country
           of origin
         </p>
-        <div className="w-full">
-          <ChartLineRankedStream
-            data={data}
-            minRank={0}
-            maxRank={6}
-            xLabels={xLabels}
-            yLabels={yLabels}
-          />
+        <div className="w-full px-[10%]">
+          <div className="m-auto">
+            <ChartLineRankedStream
+              data={data}
+              minRank={0}
+              maxRank={75}
+              xLabels={xLabels}
+              yLabels={yLabels}
+            />
+          </div>
         </div>
       </div>
     </ContentWrapper>

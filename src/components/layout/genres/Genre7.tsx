@@ -9,19 +9,19 @@ export default function Genre7() {
 
   const mountainVariants = {
     enter: (direction: number) => ({
-      top: direction < 0 ? 300 : '200%',
-      opacity: direction < 0 ? 1: .6,
-      scale: direction < 0 ? 1 : 4,
+      top: direction < 0 ? 300: "200%",
+      opacity: direction < 0 ? 1 : 0.6,
+      height: direction < 0 ? "calc(100vh-300px)" : "400vh",
     }),
     center: {
-      top: 1400,
+      top: 300,
       opacity: 1,
-      scale: 4,
+      height: "400vh",
     },
     exit: {
-      top: 1400,
+      top: 300,
       opacity: 1,
-      scale: 4,
+      height: "400vh",
     },
   };
 
@@ -46,8 +46,8 @@ export default function Genre7() {
         <motion.div
           variants={mountainVariants}
           custom={direction}
-          transition={{ ease: 'easeInOut', duration: 1 }}
-          className="absolute left-0 right-0 w-screen min-w-[1200px]"
+          transition={{ ease: "easeInOut", duration: 1.5 }}
+          className="absolute left-0 right-0 min-w-[1200px]"
         >
           <MountainGenres />
         </motion.div>

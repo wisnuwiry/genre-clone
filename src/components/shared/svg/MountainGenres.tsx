@@ -2,6 +2,7 @@ export default function MountainGenres() {
   return (
     <svg
       id="mountain"
+      preserveAspectRatio="xMidYMin slice"
       width="100%"
       height="100%"
       viewBox="0 0 2176 989"
