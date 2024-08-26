@@ -11,7 +11,7 @@ export default function Genre7() {
     enter: (direction: number) => ({
       top: direction < 0 ? 300: "200%",
       opacity: direction < 0 ? 1 : 0.6,
-      height: direction < 0 ? "calc(100vh-300px)" : "400vh",
+      height: direction < 0 ? "95vh" : "400vh",
     }),
     center: {
       top: 300,

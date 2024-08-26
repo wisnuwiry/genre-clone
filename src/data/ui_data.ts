@@ -37,6 +37,8 @@ import Taxonomy9 from "@/components/layout/taxonomy/Taxonomy9";
 
 export const introViews = [
     Intro1,
+    Genre7,
+    Genre8,
     Intro2,
     Intro3,
     Intro4,

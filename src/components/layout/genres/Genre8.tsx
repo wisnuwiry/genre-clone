@@ -9,16 +9,19 @@ export default function Genre8() {
 
   const mountainVariants = {
     enter: (direction: number) => ({
-      top: direction > 0 ? 300 : "200%",
-      height: direction > 0 ? "calc(100vh-300px)" : "400vh",
+      top: 300,
+      opacity: direction < 0 ? 0.6 : 1,
+      height: direction < 0 ? "95vh" : "400vh",
     }),
     center: {
       top: 300,
-      height: "calc(100vh-300px)",
+      opacity: 1,
+      height: "95vh",
     },
     exit: {
       top: 300,
-      height: "calc(100vh-300px)",
+      opacity: 1,
+      height: "95vh",
     },
   };
 
@@ -27,12 +30,14 @@ export default function Genre8() {
       {/* Header */}
       <ContentHeader>
         <p className="my-4">
-          Next, we are going to look at what beyond the top 25. Music nerds,
-          this section is for you.
+          But is reggaeton seemingly pervasive because we are finally counting
+          popularity on a global stage? Is K-pops ascent driven by Spotify
+          finally tapping into the taste of music fans in more countries?
         </p>
-        <p className="my-4 text-xl">
-          Below the top 25 ranking are genres #26 to #6,000 (and counting), all
-          part of an on-going effort to catalog every music community.
+        <p className="my-4">
+          Popularity is such a self-fulfilling loop: we obsess over whxats
+          popular (especially in the US), pushing top-charting artists further
+          into the cultural spotlight.
         </p>
       </ContentHeader>
 
@@ -41,7 +46,7 @@ export default function Genre8() {
         <motion.div
           variants={mountainVariants}
           custom={direction}
-          transition={{ ease: "easeInOut", duration: 1 }}
+          transition={{ ease: "easeInOut", duration: 1.5 }}
           className="absolute left-0 right-0 min-w-[1200px]"
         >
           <MountainGenres />
