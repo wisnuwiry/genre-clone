@@ -1,5 +1,6 @@
 import { AudioPlayerProvider } from "@/components/contexts/useAudioPlayer";
 import { DirectionProvider } from "@/components/contexts/useDirection";
+import { VideoPlayerProvider } from "@/components/contexts/useVideoPlayer";
 import PageScaffold from "@/components/layout/PageScaffold";
 import { IBM_Plex_Sans_Condensed, Nanum_Myeongjo } from "next/font/google";
 
@@ -24,7 +25,9 @@ export default function Home() {
     >
       <DirectionProvider>
         <AudioPlayerProvider>
-          <PageScaffold />
+          <VideoPlayerProvider>
+            <PageScaffold />
+          </VideoPlayerProvider>
         </AudioPlayerProvider>
       </DirectionProvider>
     </main>

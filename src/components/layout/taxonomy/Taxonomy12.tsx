@@ -1,6 +1,6 @@
-import LatinCombinedBubble from "@/components/shared/bubbles/LatinCombinedBubble";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
+import VideoPlayer from "@/components/shared/VideoPlayer";
 
 export default function Taxonomy12() {
   return (
@@ -19,7 +19,11 @@ export default function Taxonomy12() {
         <div className="my-2">
           Yacht rock is the 154th most-streamed genre on Spotify, even though
           John Oates (the “Oates” of Hall & Oates) had{" "}
-          <a href="https://www.youtube.com/watch?v=ZiyCMKMOVAc" target="_blank" className="underline">
+          <a
+            href="https://www.youtube.com/watch?v=ZiyCMKMOVAc"
+            target="_blank"
+            className="underline"
+          >
             never heard of the term
           </a>
           .
@@ -29,7 +33,11 @@ export default function Taxonomy12() {
       {/* Content */}
       <div className="w-full pt-12">
         <div className="max-w-[80%] m-auto">
-          <LatinCombinedBubble />
+          <VideoPlayer
+            src="/video/1/1.mp4"
+            thumbnail="/video/1/thumb.jpg"
+            videoId="video-taxonomy-12"
+          />
         </div>
       </div>
     </ContentWrapper>
