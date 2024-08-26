@@ -1,3 +1,4 @@
+import ChartNewsGrid from "@/components/shared/charts/ChartNewsGrid";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import Image from "next/image";
@@ -17,7 +18,7 @@ export default function Taxonomy10() {
       {/* Content */}
       <div className="w-full pt-12">
         <div className="max-w-[80%] m-auto z-50">
-          <Image src="/img/news_1.svg" width={600} height={600} className="w-full h-auto" alt="News" />
+          <ChartNewsGrid />
         </div>
       </div>
     </ContentWrapper>
