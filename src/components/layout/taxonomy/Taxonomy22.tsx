@@ -1,38 +1,56 @@
 import LatinCombinedBubble from "@/components/shared/bubbles/LatinCombinedBubble";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
+import Footer from "@/components/shared/Footer";
 
 export default function Taxonomy22() {
   return (
     <ContentWrapper className="flex flex-col">
       {/* Header */}
       <ContentHeader>
-        <p className="my-2">
+        <p className="my-2 text-center">
+          This essay is by{" "}
           <a
-            href="https://docs.google.com/spreadsheets/d/1BWHO9TLmCtJIKeC63HuVtjHfwb6iBOAxe-_HBFJ-FHI/edit#gid=1952369265"
+            href="https://pudding.cool/author/matt-daniels/"
             target="_blank"
             className="underline"
           >
-            Here
-          </a>
-          is a historic, publicly-available view of Spotify’s genre dataset,
-          which was scraped from
+            Matt Daniels
+          </a>{" "}
+          with{" "}
           <a
-            href="https://everynoise.com/everynoise1d.cgi?vector=popularity&amp;scope=all"
+            href="https://pudding.cool/author/michelle-mcghee/"
             target="_blank"
             className="underline"
           >
-            Every Noise at Once
+            Michelle McGhee
           </a>
           .
+        </p>
+        <p className="my-2 text-center">
+          Subscribe to{" "}
+          <a
+            href="https://thepuddingmail.substack.com"
+            target="_blank"
+            className="underline"
+          >
+            The Pudding’s newsletter
+          </a>
+          . Consider supporting us on{" "}
+          <a
+            href="https://www.patreon.com/thepudding"
+            target="_blank"
+            className="underline"
+          >
+            Patreon
+          </a>{" "}
+          too.
         </p>
       </ContentHeader>
 
       {/* Content */}
       <div className="w-full pt-12">
-        <div className="max-w-[80%] m-auto">
-          <LatinCombinedBubble />
-        </div>
+        <Footer />
       </div>
     </ContentWrapper>
   );

@@ -1,12 +1,14 @@
+import { cn } from "@/utils/cn";
 import { useAudioPlayer } from "../contexts/useAudioPlayer";
 
 interface Props {
   title: string;
   src: string;
   audioId: string;
+  className?: string;
 }
 
-export default function AudioButton({ title, src, audioId }: Props) {
+export default function AudioButton({ title, src, audioId, className }: Props) {
   const {
     play,
     pause,
@@ -33,18 +35,18 @@ export default function AudioButton({ title, src, audioId }: Props) {
   };
 
   return (
-    <div className="w-fit inline z-20">
+    <div className="w-fit inline z-20 group">
       <button
-        className="pointer-events-auto inline relative px-2 py-1 bg-[#EFEFEF] font-sans rounded-xl"
+        className={cn("pointer-events-auto inline relative px-4 py-2.5 bg-[#EFEFEF] font-sans rounded-xl overflow-hidden", className)}
         onClick={playerControl}
       >
         <div
-          className="progress absolute top-0 left-0 right-0 h-full bg-[#b3ff00] rounded-xl"
+          className="progress absolute top-0 left-0 right-0 h-full bg-[#b3ff00] group-hover:bg-[#77aa00] rounded-xl"
           style={{
             width: `${100 - (isCurrentAudio ? percentagePlayed : 0)}%`,
           }}
         ></div>
-        <p className="relative">{title} 🎵 </p>
+        <p className="relative font-bold">{title} 🎵 </p>
       </button>
     </div>
   );

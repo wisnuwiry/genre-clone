@@ -1,6 +1,7 @@
 import LatinCombinedBubble from "@/components/shared/bubbles/LatinCombinedBubble";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
+import VideoPlayer from "@/components/shared/VideoPlayer";
 
 export default function Taxonomy18() {
   return (
@@ -22,7 +23,11 @@ export default function Taxonomy18() {
       {/* Content */}
       <div className="w-full pt-12">
         <div className="max-w-[80%] m-auto">
-          <LatinCombinedBubble />
+          <VideoPlayer
+            src="/video/3/3.mp4"
+            thumbnail="/video/3/thumb.jpg"
+            videoId="video-taxonomy-18"
+          />
         </div>
       </div>
     </ContentWrapper>

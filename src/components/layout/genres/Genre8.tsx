@@ -9,7 +9,7 @@ export default function Genre8() {
 
   const mountainVariants = {
     enter: (direction: number) => ({
-      top: 300,
+      top: direction < 0 ? 800 : 300,
       opacity: direction < 0 ? 0.6 : 1,
       height: direction < 0 ? "95vh" : "400vh",
     }),

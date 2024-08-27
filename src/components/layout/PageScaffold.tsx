@@ -5,12 +5,14 @@ import { contentViews, controlGroupItems } from "@/data/ui_data";
 import { motion } from "framer-motion";
 import { useDirection } from "../contexts/useDirection";
 import { useAudioPlayer } from "../contexts/useAudioPlayer";
+import { useVideoPlayer } from "../contexts/useVideoPlayer";
 
 export default function PageScaffold() {
   // States
   const [activeIndex, setActiveIndex] = useState(0);
   const { direction, setDirection } = useDirection();
-  const { stop } = useAudioPlayer();
+  const { stop: stopAudio } = useAudioPlayer();
+  const { stop: stopVideo } = useVideoPlayer();
 
   // Callbacks
   const handleKeyDown = useCallback((event: any) => {
@@ -26,7 +28,8 @@ export default function PageScaffold() {
   const backPage = () => {
     setDirection(-1);
     setActiveIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-    stop();
+    stopAudio();
+    stopVideo();
   };
 
   const nextPage = () => {

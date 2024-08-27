@@ -1,6 +1,7 @@
 import LatinCombinedBubble from "@/components/shared/bubbles/LatinCombinedBubble";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
+import VideoPlayer from "@/components/shared/VideoPlayer";
 
 export default function Taxonomy19() {
   return (
@@ -29,8 +30,12 @@ export default function Taxonomy19() {
 
       {/* Content */}
       <div className="w-full pt-12">
-        <div className="max-w-[80%] m-auto">
-          <LatinCombinedBubble />
+      <div className="max-w-[80%] m-auto">
+          <VideoPlayer
+            src="/video/4/4.mp4"
+            thumbnail="/video/4/thumb.jpg"
+            videoId="video-taxonomy-19"
+          />
         </div>
       </div>
     </ContentWrapper>

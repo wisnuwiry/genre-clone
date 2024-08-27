@@ -1,6 +1,6 @@
-import LatinCombinedBubble from "@/components/shared/bubbles/LatinCombinedBubble";
 import ContentHeader from "@/components/shared/ContentHeader";
 import ContentWrapper from "@/components/shared/ContentWrapper";
+import Image from "next/image";
 
 export default function Taxonomy16() {
   return (
@@ -16,25 +16,18 @@ export default function Taxonomy16() {
           “fish.” Everything from squid to crabs (and obviously jellyfish) were
           lumped into the same “fish” bucket.
         </p>
-        For centuries we had generic names to identify animals, such as “fish.”
-        Everything from squid to crabs (and obviously jellyfish) were lumped
-        into the same “fish” bucket.
-        <p className="my-2">
-          For centuries we had generic names to identify animals, such as
-          “fish.” Everything from squid to crabs (and obviously jellyfish) were
-          lumped into the same “fish” bucket.
-        </p>
-        <p className="my-2">
-          But on closer inspection, most of these animals were not related at
-          all. In a research context, scientists have drawn boundaries between
-          animals that we mindlessly lumped together.
-        </p>
       </ContentHeader>
 
       {/* Content */}
       <div className="w-full pt-12">
-        <div className="max-w-[80%] m-auto">
-          <LatinCombinedBubble />
+        <div className="max-w-[80%] max-h-[] m-auto">
+          <Image
+            src="/img/fish.jpg"
+            width={500}
+            height={800}
+            alt="Fish"
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
     </ContentWrapper>

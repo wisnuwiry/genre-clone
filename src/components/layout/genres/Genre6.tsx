@@ -67,6 +67,7 @@ export default function Genre6() {
             src="/audio/bad-bunny.mp3"
             audioId="bad-bunny"
             title="Bad Bunny"
+            className="px-2 py-1"
           />
           , the world’s most streamed musician, three years running.{" "}
           <strong>Reggeation</strong>

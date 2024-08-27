@@ -26,7 +26,6 @@ import Taxonomy2 from "@/components/layout/taxonomy/Taxonomy2";
 import Taxonomy20 from "@/components/layout/taxonomy/Taxonomy20";
 import Taxonomy21 from "@/components/layout/taxonomy/Taxonomy21";
 import Taxonomy22 from "@/components/layout/taxonomy/Taxonomy22";
-import Taxonomy23 from "@/components/layout/taxonomy/Taxonomy23";
 import Taxonomy3 from "@/components/layout/taxonomy/Taxonomy3";
 import Taxonomy4 from "@/components/layout/taxonomy/Taxonomy4";
 import Taxonomy5 from "@/components/layout/taxonomy/Taxonomy5";
@@ -77,7 +76,6 @@ export const taxonomyViews = [
     Taxonomy20,
     Taxonomy21,
     Taxonomy22,
-    Taxonomy23,
 ];
 
 export const contentViews = [
@@ -100,3 +98,38 @@ export const controlGroupItems = [
         length: taxonomyViews.length,
     },
 ];
+
+export const footerMenus = [
+    {
+        title: 'About',
+        link: 'https://pudding.cool/about',
+    },
+    {
+        title: 'Facebook',
+        link: 'https://facebook.com/pudding.viz/',
+    },
+    {
+        title: 'Twitter',
+        link: 'https://twitter.com/puddingviz/',
+    },
+    {
+        title: 'Instagram',
+        link: 'https://www.instagram.com/the.pudding',
+    },
+    {
+        title: 'Patreon',
+        link: 'https://patreon.com/thepudding/',
+    },
+    {
+        title: 'Privacy',
+        link: 'https://pudding.cool/privacy/',
+    },
+    {
+        title: 'Newsletter',
+        link: 'https://thepuddingmail.substack.com/',
+    },
+    {
+        title: 'RSS',
+        link: 'https://pudding.cool/feed/index.xml',
+    },
+]
